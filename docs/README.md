@@ -1,2 +1,2 @@
-aqui sera tuda a documentação do seu projeto
+Aqui será a documentação do projeto
 

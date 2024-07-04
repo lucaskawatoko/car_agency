@@ -1,0 +1,31 @@
+version: '3.9'
+
+services:
+  djangoapp:
+    container_name: djangoapp
+    build:
+      context: .
+    ports:
+      - 8000:8000
+    volumes:
+      - ./djangoapp:/djangoapp
+      - data_static:/data/web/static/
+      - data_media:/data/web/media/
+    env_file:
+      - ./dotenv_files/.env
+    depends_on:
+      - psql
+    command: /scripts/commands.sh  # Atualizado para garantir que o script é executado corretamente
+
+  psql:
+    container_name: psql
+    image: postgres:13-alpine
+    volumes:
+      - data_postgres:/var/lib/postgresql/data/
+    env_file:
+      - ./dotenv_files/.env
+
+volumes:
+  data_static:
+  data_media:
+  data_postgres:
